@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Account</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}                            
+            {% for message in messages %}            
+                <p class="bg-danger text-white text-center p-3">{{message}}</p>                   
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container jumbotron bg-dark text-white">
+        <div class="row">
+            <div class="col-lg">
+                <h1 class="p-3 ml-2">Edit My Account</h1>
+            </div>
+            <div class="col-sm text-right">
+                <button class="btn-lg bg-primary ml-5"><a class="text-white" href="/success">Back</a></button>
+                <button class="btn-lg bg-primary ml-1"><a class="text-white" href="/logout">Logout</a></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <form action="/update_account/{{session['user_id']}}" method="POST">
+                    <p>First Name:<input class="form-control w-50" name="f_name" placeholder="{{user_data['first_name']}}"></input></p>
+                    <p>Last Name:<input class="form-control w-50" name="l_name" placeholder="{{user_data['last_name']}}"></input></p>
+                    <p>Email:<input class="form-control w-50" name="email" placeholder="{{user_data['email']}}"></input></p>
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
